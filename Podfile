@@ -6,5 +6,7 @@ target 'moovies' do
   use_frameworks!
 
   # Pods for moovies
+  pod 'Alamofire', '~> 5.5'
+  pod 'SDWebImage', '~> 5.0'
 
 end
