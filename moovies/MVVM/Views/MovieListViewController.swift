@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,22 +18,29 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel = MovieListViewModel(useCase: MovieListUseCase())
+        setupTableView()
+        setupViewModel()
         bindViewModel()
-        viewModel.getPopularMovies(page: 1)
     }
 }
 
-extension HomeViewController {
+extension MovieListViewController {
     private func setupUI() {
-        title = "Home"
+        title = Constant.HomePageTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "MovieListViewCell", bundle: nil), forCellReuseIdentifier: Constant.MovieListViewCellID)
-        
-        let tableViewLoadingCellNib = UINib(nibName: "LoadingViewCell", bundle: nil)
+        tableView.register(UINib(nibName: Constant.MovieListViewCellID, bundle: nil), forCellReuseIdentifier: Constant.MovieListViewCellID)
+        let tableViewLoadingCellNib = UINib(nibName: Constant.LoadingViewCellID, bundle: nil)
         tableView.register(tableViewLoadingCellNib, forCellReuseIdentifier: Constant.LoadingViewCellID)
+    }
+    
+    private func setupViewModel() {
+        viewModel = MovieListViewModel(useCase: MovieListUseCase())
+        viewModel.getPopularMovies(page: 1)
     }
     
     private func bindViewModel() {
@@ -53,7 +60,6 @@ extension HomeViewController {
         let position = scrollView.contentOffset.y
         if position > (tableView.contentSize.height - 100 - scrollView.frame.size.height) {
             loadMoreData()
-            print("Reach the bottom of table view")
         }
     }
     
@@ -69,18 +75,15 @@ extension HomeViewController {
             }
         }
     }
-    
     func getCurrentPageIdx() -> Int {
         return movies.last?.page ?? -1
     }
 }
 
-extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
-    
+extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             var numberOfRow = 0
@@ -92,7 +95,6 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             return 1
         } else { return 0 }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constant.MovieListViewCellID, for: indexPath) as? MovieListViewCell

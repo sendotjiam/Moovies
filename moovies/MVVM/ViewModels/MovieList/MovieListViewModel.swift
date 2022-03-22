@@ -23,7 +23,6 @@ class MovieListViewModel {
     
     // MARK: - Input
     func getPopularMovies(page: Int) {
-        print("Current page: ", page)
         useCase.getPopularMovies(page: page) { [weak self] movies, error in
             if error != nil {
                 self?.didReceiveError?(error)

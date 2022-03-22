@@ -14,11 +14,9 @@ struct MovieListUseCase : MovieListNetworkProvider {
     
     func getPopularMovies(page: Int, completion: @escaping GetPopularMovies) {
         let url = "\(Constant.baseUrl)/movie/popular?api_key=\(Constant.apiKey)&page=\(page)"
-        print(url)
         AF.request(url).response { response in
             do {
                 let data = try? JSONDecoder().decode(Movies.self, from: response.data!)
-                print(data, "Data")
                 completion(data, nil)
             } catch let error {
                 print(error.localizedDescription)
