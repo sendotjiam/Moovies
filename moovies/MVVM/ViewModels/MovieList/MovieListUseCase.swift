@@ -16,8 +16,10 @@ struct MovieListUseCase : MovieListNetworkProvider {
         let url = "\(Constant.baseUrl)/movie/popular?api_key=\(Constant.apiKey)&page=\(page)"
         AF.request(url).response { response in
             do {
-                let data = try? JSONDecoder().decode(Movies.self, from: response.data!)
-                completion(data, nil)
+                if let data = response.data {
+                    let movies = try? JSONDecoder().decode(Movies.self, from: data)
+                    completion(movies, nil)
+                }
             } catch let error {
                 print(error.localizedDescription)
                 completion(nil, error)

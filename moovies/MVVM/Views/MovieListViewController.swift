@@ -12,6 +12,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel : MovieListViewModel!
+    var viewModel2 : MovieDetailViewModel!
     var isLoading = false
     var movies = [Movies]()
     
@@ -41,6 +42,8 @@ extension MovieListViewController {
     private func setupViewModel() {
         viewModel = MovieListViewModel(useCase: MovieListUseCase())
         viewModel.getPopularMovies(page: 1)
+        viewModel2 = MovieDetailViewModel(useCase: MovieDetailUseCase())
+        viewModel2.getMovieDetail(movieId: 2321)
     }
     
     private func bindViewModel() {
@@ -50,6 +53,9 @@ extension MovieListViewController {
                 self?.tableView.reloadData()
                 self?.isLoading = false
             }
+        }
+        viewModel2.didReceiveMovieDetail = { [weak self] in
+            print(self?.viewModel2.movieDetail, "<<<< RESULT")
         }
         viewModel.didReceiveError = { error in
             print(error?.localizedDescription ?? "")
