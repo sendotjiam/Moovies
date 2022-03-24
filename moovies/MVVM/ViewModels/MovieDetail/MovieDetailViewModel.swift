@@ -19,12 +19,18 @@ class MovieDetailViewModel {
     
     // MARK: - Input
     var didReceiveMovieDetail : (() -> Void)?
-    var didReceiveError : ((Error) -> Void)?
+    var didReceiveError : ((String) -> Void)?
     
     // MARK: - Output
     func getMovieDetail(movieId : Int) {
-        useCase.getMovieDetail(movieId: movieId) { [weak self] data, error in
-            print(data, "<<< DATA")
+        useCase.getMovieDetail(movieId: movieId) { [weak self] movie, error in
+            if error != nil {
+                self?.didReceiveError?(error?.localizedDescription ?? "")
+            }
+            if let movie = movie {
+                self?.movieDetail = movie
+                self?.didReceiveMovieDetail?()
+            }
         }
     }
     

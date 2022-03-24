@@ -14,15 +14,13 @@ struct MovieDetailUseCase : MovieDetailNetworkProvider {
     
     func getMovieDetail(movieId: Int, completion: @escaping GetMovieDetail) {
         let url = "\(Constant.baseUrl)/movie/\(movieId)?api_key=\(Constant.apiKey)"
-        print(url)
         AF.request(url).response { response in
             do {
-//                let data = try? JSONDecoder().decode(MovieDetail.self, from: response.data!)
                 if let data = response.data {
-                    let temp = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                    print(temp)
+                    let movie = try? JSONDecoder().decode(MovieDetail.self, from: data)
+                    print(movie)
+//                    completion(movie, nil)
                 }
-//                completion(data, nil)
             } catch let error {
                 print(error.localizedDescription)
                 completion(nil, error)

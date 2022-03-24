@@ -19,13 +19,13 @@ class MovieListViewModel {
     
     // MARK: - Output
     var didReceiveMovies : (() -> Void)?
-    var didReceiveError : ((Error?) -> Void)?
+    var didReceiveError : ((String) -> Void)?
     
     // MARK: - Input
     func getPopularMovies(page: Int) {
         useCase.getPopularMovies(page: page) { [weak self] movies, error in
             if error != nil {
-                self?.didReceiveError?(error)
+                self?.didReceiveError?(error?.localizedDescription ?? "")
             }
             if let movies = movies {
                 self?.moviesResult = movies

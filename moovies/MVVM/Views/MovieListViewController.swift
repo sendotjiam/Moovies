@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController {
     var viewModel2 : MovieDetailViewModel!
     var isLoading = false
     var movies = [Movies]()
+    var currentMovieId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +56,11 @@ extension MovieListViewController {
             }
         }
         viewModel2.didReceiveMovieDetail = { [weak self] in
-            print(self?.viewModel2.movieDetail, "<<<< RESULT")
+//            print(self?.viewModel2.movieDetail, "<<<< RESULT")
         }
         viewModel.didReceiveError = { error in
-            print(error?.localizedDescription ?? "")
-            fatalError(error?.localizedDescription ?? "")
+            print(error)
+            fatalError(error)
         }
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -106,7 +107,11 @@ extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constant.MovieListViewCellID, for: indexPath) as? MovieListViewCell
             for i in 0..<movies.count {
                 let results =  movies[i].results
+                print(indexPath.row, results.count, "<<< index")
+                let movie = results[indexPath.row % results.count]
+                currentMovieId = movie.id
                 cell?.configureCell(movie: results[indexPath.row % results.count])
+                cell?.tapButton.addTarget(self, action: #selector(goToDetail), for: .touchUpInside)
             }
             return cell!
         } else {
@@ -114,6 +119,10 @@ extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
             cell?.spinner.startAnimating()
             return cell!
         }
+    }
+    @objc func goToDetail() {
+        let vc = MovieDetailViewController(movieId: currentMovieId)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section != 0 {

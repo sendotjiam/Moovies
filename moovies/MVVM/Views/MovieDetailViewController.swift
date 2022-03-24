@@ -9,9 +9,20 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    var movieId : Int!
+    
+    init(movieId : Int) {
+        self.movieId = movieId
+        super.init(nibName: "MovieDetailViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(movieId)
         // Do any additional setup after loading the view.
     }
 

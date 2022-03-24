@@ -59,14 +59,26 @@
                                     <constraint firstAttribute="bottom" secondItem="AkT-vh-k2e" secondAttribute="bottom" id="y55-Fh-Dst"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJa-x5-7Mh">
+                                <rect key="frame" x="0.0" y="0.0" width="406" height="184"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="tapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sGW-V6-UQn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="BJa-x5-7Mh" firstAttribute="top" secondItem="PTd-Ph-y3T" secondAttribute="top" id="33n-Yj-1uv"/>
                             <constraint firstItem="wMP-4p-rdA" firstAttribute="top" secondItem="PTd-Ph-y3T" secondAttribute="top" constant="16" id="9t4-Js-Tsf"/>
                             <constraint firstItem="wMP-4p-rdA" firstAttribute="leading" secondItem="PTd-Ph-y3T" secondAttribute="leading" constant="16" id="FHm-ae-M3g"/>
                             <constraint firstAttribute="bottom" secondItem="wMP-4p-rdA" secondAttribute="bottom" constant="16" id="Fzm-kY-RRi"/>
+                            <constraint firstItem="BJa-x5-7Mh" firstAttribute="leading" secondItem="PTd-Ph-y3T" secondAttribute="leading" id="mnU-yh-2Ro"/>
+                            <constraint firstAttribute="bottom" secondItem="BJa-x5-7Mh" secondAttribute="bottom" id="nf1-V0-G3N"/>
                             <constraint firstAttribute="trailing" secondItem="wMP-4p-rdA" secondAttribute="trailing" constant="16" id="qVy-g7-xYh"/>
+                            <constraint firstAttribute="trailing" secondItem="BJa-x5-7Mh" secondAttribute="trailing" id="ruH-Y8-MkS"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -87,6 +99,7 @@
                 <outlet property="movieOverview" destination="zqk-ra-ZBt" id="rdD-Nx-h3g"/>
                 <outlet property="movieReleaseDate" destination="wBU-mZ-yHi" id="lU3-iD-S24"/>
                 <outlet property="movieTitle" destination="3HU-sF-pRs" id="ffV-nc-KnE"/>
+                <outlet property="tapButton" destination="BJa-x5-7Mh" id="sGB-Ir-s3l"/>
             </connections>
             <point key="canvasLocation" x="223.18840579710147" y="160.04464285714286"/>
         </tableViewCell>
