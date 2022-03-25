@@ -8,6 +8,10 @@
 import UIKit
 import SDWebImage
 
+protocol PresentMovieDetailProtocol {
+//    func didTapPresentMovieDetail()
+}
+
 class MovieListViewCell: UITableViewCell {
     
     @IBOutlet weak var containerView: UIView!
@@ -15,7 +19,9 @@ class MovieListViewCell: UITableViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieReleaseDate: UILabel!
     @IBOutlet weak var movieOverview: UILabel!
-    @IBOutlet weak var tapButton: UIButton!
+//    @IBOutlet weak var tapButton: UIButton!
+    
+//    var delegate : PresentMovieDetailProtocol!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +32,9 @@ class MovieListViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+//    @IBAction func showMovieDetailTapped(_ sender: Any) {
+//        self.delegate.didTapPresentMovieDetail()
+//    }
     func configureCell(
         movie: Movie
     ) {

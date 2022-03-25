@@ -63,9 +63,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="406" height="184"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
-                                <connections>
-                                    <action selector="tapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sGW-V6-UQn"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -80,6 +77,11 @@
                             <constraint firstAttribute="trailing" secondItem="wMP-4p-rdA" secondAttribute="trailing" constant="16" id="qVy-g7-xYh"/>
                             <constraint firstAttribute="trailing" secondItem="BJa-x5-7Mh" secondAttribute="trailing" id="ruH-Y8-MkS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="BJa-x5-7Mh"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,7 +101,6 @@
                 <outlet property="movieOverview" destination="zqk-ra-ZBt" id="rdD-Nx-h3g"/>
                 <outlet property="movieReleaseDate" destination="wBU-mZ-yHi" id="lU3-iD-S24"/>
                 <outlet property="movieTitle" destination="3HU-sF-pRs" id="ffV-nc-KnE"/>
-                <outlet property="tapButton" destination="BJa-x5-7Mh" id="sGB-Ir-s3l"/>
             </connections>
             <point key="canvasLocation" x="223.18840579710147" y="160.04464285714286"/>
         </tableViewCell>
