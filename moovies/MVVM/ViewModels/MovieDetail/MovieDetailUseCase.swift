@@ -18,8 +18,7 @@ struct MovieDetailUseCase : MovieDetailNetworkProvider {
             do {
                 if let data = response.data {
                     let movie = try? JSONDecoder().decode(MovieDetail.self, from: data)
-                    print(movie)
-//                    completion(movie, nil)
+                    completion(movie, nil)
                 }
             } catch let error {
                 print(error.localizedDescription)
