@@ -10,10 +10,12 @@ import SDWebImage
 
 class MovieDetailViewController: UIViewController {
 
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
     var movieId : Int!
     var viewModel : MovieDetailViewModel!
     var movieDetail : MovieDetail!
@@ -29,26 +31,27 @@ class MovieDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel = MovieDetailViewModel(useCase: MovieDetailUseCase())
-        viewModel.getMovieDetail(movieId: movieId)
-        bindViewModel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        viewModel = MovieDetailViewModel(useCase: MovieDetailUseCase())
+        viewModel.getMovieDetail(movieId: movieId)
+        bindViewModel()
     }
 }
 
 extension MovieDetailViewController {
     private func setupUI() {
-//        print(movieDetail, "<<<")
+        loadingIndicator.startAnimating()
     }
     
     private func bindViewModel() {
         viewModel.didReceiveMovieDetail = { [weak self] in
             self?.movieDetail = self?.viewModel.movieDetail
             DispatchQueue.main.async {
+                self?.loadingIndicator.stopAnimating()
                 self?.reloadUI()
             }
         }

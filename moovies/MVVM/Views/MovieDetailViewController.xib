@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController" customModule="moovies" customModuleProvider="target">
             <connections>
+                <outlet property="loadingIndicator" destination="Z3b-nG-WiX" id="vBz-IF-nKD"/>
                 <outlet property="overviewLabel" destination="NlK-KJ-Du5" id="EFH-TO-V7b"/>
                 <outlet property="posterImageView" destination="ONH-ET-x8Z" id="3PR-iV-YLY"/>
                 <outlet property="releaseDateLabel" destination="af5-dI-R5E" id="kpt-Zg-3S7"/>
@@ -30,29 +31,36 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="ISk-KC-eQj">
-                    <rect key="frame" x="16" y="310" width="382" height="367"/>
+                    <rect key="frame" x="16" y="310" width="382" height="118"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spiderman: No Way Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCc-qp-ulV">
-                            <rect key="frame" x="0.0" y="0.0" width="245" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCc-qp-ulV">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release on 23 January 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="af5-dI-R5E">
-                            <rect key="frame" x="0.0" y="33" width="214" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="af5-dI-R5E">
+                            <rect key="frame" x="0.0" y="59" width="50" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlK-KJ-Du5">
-                            <rect key="frame" x="0.0" y="62.5" width="378.5" height="304.5"/>
-                            <string key="text">lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem </string>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlK-KJ-Du5">
+                            <rect key="frame" x="0.0" y="118" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Z3b-nG-WiX">
+                    <rect key="frame" x="182" y="423" width="50" height="50"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ArL-ce-Ior"/>
+                        <constraint firstAttribute="width" constant="50" id="pnW-EW-6a0"/>
+                    </constraints>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,13 +69,18 @@
                 <constraint firstItem="ONH-ET-x8Z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7xh-Q1-Mcz"/>
                 <constraint firstItem="ISk-KC-eQj" firstAttribute="top" secondItem="ONH-ET-x8Z" secondAttribute="bottom" constant="16" id="ENJ-yp-Hyb"/>
                 <constraint firstItem="ISk-KC-eQj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HgV-Tx-dRk"/>
+                <constraint firstItem="Z3b-nG-WiX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="VUd-a2-Cca"/>
                 <constraint firstAttribute="trailing" secondItem="ISk-KC-eQj" secondAttribute="trailing" constant="16" id="cjg-17-lET"/>
                 <constraint firstItem="ONH-ET-x8Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dpx-AT-kbX"/>
+                <constraint firstItem="Z3b-nG-WiX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jDH-Ze-ZYV"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="41.517857142857139"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
