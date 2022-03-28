@@ -47,6 +47,7 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController {
     private func setupUI() {
+        loadingIndicator.roundedCorner()
         loadingIndicator.startAnimating()
         voteAvgView.roundedCorner(width: 0, color: UIColor.black.cgColor, radius: voteAvgView.frame.width/2)
     }
@@ -70,6 +71,7 @@ extension MovieDetailViewController {
         titleLabel.text = movieDetail.title
         releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
         overviewLabel.text = movieDetail.overview
+        taglineLabel.text = " \"\(movieDetail.tagline)\" "
         let voteAvg = movieDetail.vote_average
         voteAvgLabel.text = String(voteAvg)
         if voteAvg <= 4 {

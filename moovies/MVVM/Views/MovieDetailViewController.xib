@@ -34,28 +34,28 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="ISk-KC-eQj">
-                    <rect key="frame" x="16" y="260" width="382" height="97.5"/>
+                    <rect key="frame" x="16" y="260" width="382" height="77"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCc-qp-ulV">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmV-sy-WhT">
-                            <rect key="frame" x="0.0" y="9" width="41.5" height="20.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmV-sy-WhT">
+                            <rect key="frame" x="0.0" y="9" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="af5-dI-R5E">
-                            <rect key="frame" x="0.0" y="38.5" width="50" height="50"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="0.0" y="18" width="382" height="50"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NlK-KJ-Du5">
-                            <rect key="frame" x="0.0" y="97.5" width="0.0" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="0.0" y="77" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -102,11 +102,6 @@
                 <constraint firstItem="KCM-VK-dCd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="160" id="hxd-SP-OL8"/>
                 <constraint firstItem="Z3b-nG-WiX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jDH-Ze-ZYV"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="Z3b-nG-WiX"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="137.68115942028987" y="41.517857142857139"/>
         </view>
     </objects>
