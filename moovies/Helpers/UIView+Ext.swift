@@ -17,9 +17,9 @@ extension UIView {
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
     }
-    func roundedCorner(_ width: CGFloat = 0.05, _ color : CGColor = UIColor.black.cgColor) {
+    func roundedCorner(width: CGFloat = 0.05, color : CGColor = UIColor.black.cgColor, radius : CGFloat = 6) {
         self.layer.borderWidth = width
         self.layer.borderColor = color
-        self.layer.cornerRadius = 6
+        self.layer.cornerRadius = radius
     }
 }

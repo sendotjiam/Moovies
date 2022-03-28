@@ -15,6 +15,9 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
+    @IBOutlet weak var voteAvgView: UIView!
+    @IBOutlet weak var voteAvgLabel: UILabel!
     
     var movieId : Int!
     var viewModel : MovieDetailViewModel!
@@ -45,6 +48,7 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController {
     private func setupUI() {
         loadingIndicator.startAnimating()
+        voteAvgView.roundedCorner(width: 0, color: UIColor.black.cgColor, radius: voteAvgView.frame.width/2)
     }
     
     private func bindViewModel() {
@@ -64,7 +68,19 @@ extension MovieDetailViewController {
         let url = URL(string: "https://image.tmdb.org/t/p/w185/\(movieDetail.backdrop_path)")
         posterImageView.sd_setImage(with: url, completed: nil)
         titleLabel.text = movieDetail.title
-        releaseDateLabel.text = movieDetail.release_date
+        releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
         overviewLabel.text = movieDetail.overview
+        let voteAvg = movieDetail.vote_average
+        voteAvgLabel.text = String(voteAvg)
+        if voteAvg <= 4 {
+            voteAvgView.backgroundColor = UIColor.systemRed
+            voteAvgLabel.textColor = .white
+        } else if voteAvg < 7.5 {
+            voteAvgView.backgroundColor = UIColor.systemYellow
+            voteAvgLabel.textColor = .black
+        } else if voteAvg >= 7.5 {
+            voteAvgView.backgroundColor = UIColor.systemGreen
+            voteAvgLabel.textColor = .white
+        }
     }
 }

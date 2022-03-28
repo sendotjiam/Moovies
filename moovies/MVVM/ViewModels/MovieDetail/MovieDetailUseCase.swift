@@ -14,6 +14,7 @@ struct MovieDetailUseCase : MovieDetailNetworkProvider {
     
     func getMovieDetail(movieId: Int, completion: @escaping GetMovieDetail) {
         let url = "\(Constant.baseUrl)/movie/\(movieId)?api_key=\(Constant.apiKey)"
+        print(url)
         AF.request(url).response { response in
             do {
                 if let data = response.data {
