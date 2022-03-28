@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,7 +36,6 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pirate of Carribean 2: The Awaken Kraken" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HU-sF-pRs">
                                                 <rect key="frame" x="0.0" y="0.0" width="234" height="57.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 20, 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBU-mZ-yHi">
@@ -59,19 +59,32 @@
                                     <constraint firstAttribute="bottom" secondItem="AkT-vh-k2e" secondAttribute="bottom" id="y55-Fh-Dst"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJa-x5-7Mh">
+                                <rect key="frame" x="0.0" y="0.0" width="406" height="184"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="BJa-x5-7Mh" firstAttribute="top" secondItem="PTd-Ph-y3T" secondAttribute="top" id="33n-Yj-1uv"/>
                             <constraint firstItem="wMP-4p-rdA" firstAttribute="top" secondItem="PTd-Ph-y3T" secondAttribute="top" constant="16" id="9t4-Js-Tsf"/>
                             <constraint firstItem="wMP-4p-rdA" firstAttribute="leading" secondItem="PTd-Ph-y3T" secondAttribute="leading" constant="16" id="FHm-ae-M3g"/>
                             <constraint firstAttribute="bottom" secondItem="wMP-4p-rdA" secondAttribute="bottom" constant="16" id="Fzm-kY-RRi"/>
+                            <constraint firstItem="BJa-x5-7Mh" firstAttribute="leading" secondItem="PTd-Ph-y3T" secondAttribute="leading" id="mnU-yh-2Ro"/>
+                            <constraint firstAttribute="bottom" secondItem="BJa-x5-7Mh" secondAttribute="bottom" id="nf1-V0-G3N"/>
                             <constraint firstAttribute="trailing" secondItem="wMP-4p-rdA" secondAttribute="trailing" constant="16" id="qVy-g7-xYh"/>
+                            <constraint firstAttribute="trailing" secondItem="BJa-x5-7Mh" secondAttribute="trailing" id="ruH-Y8-MkS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="BJa-x5-7Mh"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                <color key="tintColor" red="1" green="0.90764202299999996" blue="0.25878203249999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="PTd-Ph-y3T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Iea-cw-7Z8"/>
                     <constraint firstAttribute="trailing" secondItem="PTd-Ph-y3T" secondAttribute="trailing" constant="16" id="fL8-FG-0QN"/>
@@ -91,4 +104,12 @@
             <point key="canvasLocation" x="223.18840579710147" y="160.04464285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

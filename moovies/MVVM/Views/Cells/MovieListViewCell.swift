@@ -18,6 +18,7 @@ class MovieListViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,10 +33,10 @@ class MovieListViewCell: UITableViewCell {
         
         let url = URL(string: "https://image.tmdb.org/t/p/w185/\(movie.poster_path)")
         self.movieTitle.text = movie.title
-        self.movieReleaseDate?.text = movie.release_date
+        self.movieReleaseDate?.text = movie.release_date.getDateString(separator: "-")
         self.movieOverview?.text = movie.overview
         self.movieImg.sd_setImage(with: url, completed: nil)
-        self.movieImg.roundedCorner(0)
+        self.movieImg.roundedCorner(width: 0)
     }
     
 }
