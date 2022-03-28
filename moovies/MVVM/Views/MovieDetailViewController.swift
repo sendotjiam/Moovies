@@ -47,6 +47,7 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController {
     private func setupUI() {
+        loadingIndicator.roundedCorner()
         loadingIndicator.startAnimating()
         voteAvgView.roundedCorner(width: 0, color: UIColor.black.cgColor, radius: voteAvgView.frame.width/2)
     }

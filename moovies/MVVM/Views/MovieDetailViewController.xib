@@ -102,11 +102,6 @@
                 <constraint firstItem="KCM-VK-dCd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="160" id="hxd-SP-OL8"/>
                 <constraint firstItem="Z3b-nG-WiX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jDH-Ze-ZYV"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="Z3b-nG-WiX"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="137.68115942028987" y="41.517857142857139"/>
         </view>
     </objects>
