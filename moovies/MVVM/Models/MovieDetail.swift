@@ -19,9 +19,9 @@ struct MovieDetail : Decodable {
     let backdrop_path : String
     let homepage : String //
     let genres : [Genres]
-    let tagline : String //
-    let vote_average : Float // 
-    let vote_count : Int,
+    let tagline : String
+    let vote_average : Float
+    let vote_count : Int
     let budget : Int
 }
 

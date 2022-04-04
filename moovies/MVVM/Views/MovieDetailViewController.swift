@@ -81,6 +81,7 @@ extension MovieDetailViewController {
         releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
         overviewLabel.text = movieDetail.overview
         taglineLabel.text = " \"\(movieDetail.tagline)\" "
+        budgetLabel.text = movieDetail.budget.formatPriceNumber()
         let voteAvg = movieDetail.vote_average
         voteAvgLabel.text = String(voteAvg)
         if voteAvg <= 4 {
