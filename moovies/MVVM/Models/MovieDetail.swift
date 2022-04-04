@@ -21,7 +21,8 @@ struct MovieDetail : Decodable {
     let genres : [Genres]
     let tagline : String //
     let vote_average : Float // 
-    let vote_count : Int
+    let vote_count : Int,
+    let budget : Int
 }
 
 struct Genres : Decodable {
