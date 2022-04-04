@@ -7,6 +7,11 @@
 
 import UIKit
 import SDWebImage
+import SafariServices
+
+protocol MovieDetailViewControllerDelegate {
+    func pushWebView(url : URL)
+}
 
 class MovieDetailViewController: UIViewController {
 
@@ -25,6 +30,8 @@ class MovieDetailViewController: UIViewController {
     var movieId : Int!
     var viewModel : MovieDetailViewModel!
     var movieDetail : MovieDetail!
+    var movieUrl : URL!
+//    var delegate : MovieDetailViewControllerDelegate?
     
     init(movieId : Int) {
         self.movieId = movieId
@@ -34,7 +41,7 @@ class MovieDetailViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -47,7 +54,14 @@ class MovieDetailViewController: UIViewController {
         bindViewModel()
     }
     @IBAction func watchNowTapped(_ sender: Any) {
-        
+        guard let url = movieUrl
+        else { return }
+        openSafariVC(url : url)
+    }
+    func openSafariVC(url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
+        safariVC.delegate = self
     }
 }
 
@@ -81,6 +95,7 @@ extension MovieDetailViewController {
         releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
         overviewLabel.text = movieDetail.overview
         taglineLabel.text = " \"\(movieDetail.tagline)\" "
+        movieUrl = URL(string: movieDetail.homepage)
         budgetLabel.text = movieDetail.budget.formatPriceNumber()
         let voteAvg = movieDetail.vote_average
         voteAvgLabel.text = String(voteAvg)
@@ -94,5 +109,11 @@ extension MovieDetailViewController {
             voteAvgView.backgroundColor = UIColor.systemGreen
             voteAvgLabel.textColor = .white
         }
+    }
+}
+
+extension MovieDetailViewController : SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

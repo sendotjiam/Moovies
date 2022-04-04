@@ -22,7 +22,7 @@
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="voteAvgLabel" destination="hYa-eK-Mzr" id="Ae8-xh-2xJ"/>
                 <outlet property="voteAvgView" destination="KCM-VK-dCd" id="U1L-ph-ZIF"/>
-                <outlet property="watchNowBtn" destination="bwf-T0-ICJ" id="X7q-fH-T1B"/>
+                <outlet property="watchNowBtn" destination="bwf-T0-ICJ" id="9EK-Tj-kbI"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -112,7 +112,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="filled" title="Watch Now"/>
                             <connections>
-                                <action selector="watchNowTapped:" destination="-1" eventType="touchUpInside" id="XTS-a0-u3l"/>
+                                <action selector="watchNowTapped:" destination="-1" eventType="touchUpInside" id="8gQ-4w-y7e"/>
                             </connections>
                         </button>
                     </subviews>
