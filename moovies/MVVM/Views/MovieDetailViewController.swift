@@ -92,7 +92,11 @@ extension MovieDetailViewController {
         posterImageView.sd_setImage(with: posterUrl, completed: nil)
         posterImageView.roundedCorner()
         titleLabel.text = movieDetail.title
-        releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
+        if movieDetail.release_date != "" || !movieDetail.release_date.isEmpty {
+            releaseDateLabel.text = "Release on \(movieDetail.release_date.getDateString(separator: "-"))"
+        } else {
+            releaseDateLabel.text = "Unknown Release Date"
+        }
         overviewLabel.text = movieDetail.overview
         taglineLabel.text = " \"\(movieDetail.tagline)\" "
         movieUrl = URL(string: movieDetail.homepage)
