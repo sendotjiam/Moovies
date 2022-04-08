@@ -30,6 +30,15 @@ extension MovieListViewController {
     private func setupUI() {
         title = Constant.HomePageTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(didTapSearchBtn))
+    }
+    
+    @objc private func didTapSearchBtn() {
+        DispatchQueue.main.async {
+            let vc = SearchViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     private func setupTableView() {
