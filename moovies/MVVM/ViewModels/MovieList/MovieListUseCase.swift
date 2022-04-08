@@ -11,6 +11,7 @@ import Alamofire
 struct MovieListUseCase : MovieListNetworkProvider {
     
     typealias GetPopularMovies = ((Movies?, Error?) -> Void)
+    typealias SearchMovie = ((Movies?, Error?) -> Void)
     
     func getPopularMovies(page: Int, completion: @escaping GetPopularMovies) {
         let url = "\(Constant.baseUrl)/movie/popular?api_key=\(Constant.apiKey)&page=\(page)"

@@ -9,4 +9,5 @@ import Foundation
 
 protocol MovieListNetworkProvider {
     func getPopularMovies(page: Int, completion: @escaping ((Movies?, Error?) -> Void))
+    func searchMovie(keyword: String, completion: @escaping ((Movies?, Error?) -> Void))
 }

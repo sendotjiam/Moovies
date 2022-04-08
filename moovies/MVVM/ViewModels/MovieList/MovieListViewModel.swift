@@ -18,8 +18,9 @@ class MovieListViewModel {
     }
     
     // MARK: - Output
-    var didReceiveMovies : (() -> Void)?
+    var didReceivePopularMovies : (() -> Void)?
     var didReceiveError : ((String) -> Void)?
+    var didSearchedMovie : (() -> Void)?
     
     // MARK: - Input
     func getPopularMovies(page: Int) {
@@ -29,8 +30,12 @@ class MovieListViewModel {
             }
             if let movies = movies {
                 self?.moviesResult = movies
-                self?.didReceiveMovies?()
+                self?.didReceivePopularMovies?()
             }
         }
+    }
+    
+    func searchMovies(keyword: String) {
+        
     }
 }
