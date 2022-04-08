@@ -10,12 +10,10 @@ import UIKit
 class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     var viewModel : MovieListViewModel!
     var isLoading = false
     var movies = [Movie]()
-    var filteredMovies = [Movie]()
     var currentPage = 1
     var currentMovieId = 0
     
@@ -32,8 +30,6 @@ extension MovieListViewController {
     private func setupUI() {
         title = Constant.HomePageTitle
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        searchBar.delegate = self
     }
     
     private func setupTableView() {
@@ -51,19 +47,10 @@ extension MovieListViewController {
     
     private func bindViewModel() {
         viewModel.didReceivePopularMovies = { [weak self] in
-            let result = self?.viewModel.moviesResult
-            guard let result = result else { return }
+            guard let result = self?.viewModel.moviesResult else { return }
             self?.movies.append(contentsOf: result.results)
-            self?.filteredMovies.append(contentsOf: result.results)
             self?.currentPage = result.page
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-                self?.isLoading = false
-            }
-        }
-        
-        viewModel.didSearchedMovie = {
-            
+            DispatchQueue.main.async { self?.updateTableView() }
         }
         
         viewModel.didReceiveError = { error in
@@ -89,21 +76,25 @@ extension MovieListViewController {
             }
         }
     }
+    
+    func updateTableView() {
+        tableView.reloadData()
+        isLoading = false
+    }
 }
 
 extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredMovies.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.MovieListViewCellID, for: indexPath) as? MovieListViewCell
-        cell?.configureCell(movie: filteredMovies[indexPath.row])
+        cell?.configureCell(movie: movies[indexPath.row])
         return cell ?? UITableViewCell()
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // 55 -> loading cell height
         if indexPath.section != 0 { return 55 }
         return 240
     }
@@ -111,24 +102,5 @@ extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieDetailViewController(movieId: movies[indexPath.row].id)
         self.present(vc, animated: true, completion: nil)
-    }
-}
-
-extension MovieListViewController : UISearchBarDelegate {
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        view.endEditing(true)
-        
-        self.filteredMovies = self.movies
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-    }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        view.endEditing(true)
-        
-        viewModel.searchMovies(keyword: searchBar.text)
     }
 }

@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieListViewController" customModule="moovies" customModuleProvider="target">
             <connections>
-                <outlet property="searchBar" destination="LhG-Po-2Ke" id="e6W-k8-hfU"/>
                 <outlet property="tableView" destination="0AM-1X-49q" id="VmV-Mg-CiR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,28 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xwj-Ky-it6">
-                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                    <subviews>
-                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="LhG-Po-2Ke">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-1X-49q">
-                            <rect key="frame" x="0.0" y="51" width="414" height="801"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </tableView>
-                    </subviews>
-                </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-1X-49q">
+                    <rect key="frame" x="0.0" y="47" width="414" height="801"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="xwj-Ky-it6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="1PU-fM-M7c"/>
-                <constraint firstAttribute="bottom" secondItem="xwj-Ky-it6" secondAttribute="bottom" id="1ya-LQ-dwi"/>
-                <constraint firstItem="xwj-Ky-it6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="599-4R-mBQ"/>
-                <constraint firstItem="xwj-Ky-it6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="a2i-Yb-P8s"/>
-            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
         </view>
     </objects>
