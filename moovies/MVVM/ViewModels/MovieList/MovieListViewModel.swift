@@ -12,7 +12,7 @@ class MovieListViewModel {
     // MARK: - Properties
     let useCase : MovieListUseCase
     var moviesResult : Movies!
-    var searchedMovies : Movies!
+
     
     init(useCase : MovieListUseCase) {
         self.useCase = useCase
@@ -21,7 +21,7 @@ class MovieListViewModel {
     // MARK: - Output
     var didReceivePopularMovies : (() -> Void)?
     var didReceiveError : ((String) -> Void)?
-    var didSearchedMovies : (() -> Void)?
+    var didSearchMovies : (() -> Void)?
     
     // MARK: - Input
     func getPopularMovies(page: Int) {
@@ -46,8 +46,8 @@ class MovieListViewModel {
                 return
             }
             print(movies)
-            self?.searchedMovies = movies
-            self?.didSearchedMovies?()
+            self?.moviesResult = movies
+            self?.didSearchMovies?()
         }
     }
 }

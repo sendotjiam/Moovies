@@ -30,7 +30,6 @@ struct MovieListUseCase : MovieListNetworkProvider {
     }
     
     func searchMovie(keyword: String, completion: @escaping ((Movies?, Error?) -> Void)) {
-        print(keyword)
         let url = "\(Constant.baseUrl)/search/movie?api_key=\(Constant.apiKey)&query=\(keyword)"
         print(url)
         AF.request(url).response { response in
@@ -39,7 +38,7 @@ struct MovieListUseCase : MovieListNetworkProvider {
                 let movies = try decoder.decode(Movies.self, from: data)
                 completion(movies, nil)
             } catch let error {
-                print(error.localizedDescription)
+                print(error)
                 completion(nil, error)
             }
         }

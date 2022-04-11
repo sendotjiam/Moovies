@@ -34,8 +34,9 @@ class MovieListViewCell: UITableViewCell {
         let url = URL(string: "https://image.tmdb.org/t/p/w185/\(movie.poster_path)")
         self.movieTitle.text = movie.title
         self.movieReleaseDate?.text =
-            movie.release_date == "" || movie.release_date.isEmpty ?
-                "Unknown Release Date" : movie.release_date.getDateString(separator: "-")
+            movie.release_date == "" || ((movie.release_date?.isEmpty) != nil)
+            ? "Unknown Release Date"
+            : movie.release_date?.getDateString(separator: "-")
         self.movieOverview?.text = movie.overview
         self.movieImg.sd_setImage(with: url, completed: nil)
         self.movieImg.roundedCorner(width: 0)
