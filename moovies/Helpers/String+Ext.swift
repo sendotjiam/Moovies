@@ -9,6 +9,9 @@ import Foundation
 
 extension String {
     func getDateString(separator: Character) -> String {
+        if self == "" || self.isEmpty {
+            return ""
+        }
         let splitString = self.split(separator: separator)
         var month = ""
         switch splitString[1] {

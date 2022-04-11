@@ -11,11 +11,11 @@ class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel : MovieListViewModel!
-    var isLoading = false
-    var movies = [Movie]()
-    var currentPage = 1
-    var currentMovieId = 0
+    private var viewModel : MovieListViewModel!
+    private var isLoading = false
+    private var movies = [Movie]()
+    private var currentPage = 1
+    private var currentMovieId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,15 @@ extension MovieListViewController {
     private func setupUI() {
         title = Constant.HomePageTitle
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(didTapSearchBtn))
+    }
+    
+    @objc private func didTapSearchBtn() {
+        DispatchQueue.main.async {
+            let vc = SearchViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     private func setupTableView() {
@@ -46,19 +55,13 @@ extension MovieListViewController {
     }
     
     private func bindViewModel() {
-        viewModel.didReceiveMovies = { [weak self] in
-            let result = self?.viewModel.moviesResult
-            if let result = result {
-                result.results.forEach { movie in
-                    self?.movies.append(movie)
-                }
-                self?.currentPage = result.page
-                DispatchQueue.main.async { [weak self] in
-                    self?.tableView.reloadData()
-                    self?.isLoading = false
-                }
-            }
+        viewModel.didReceivePopularMovies = { [weak self] in
+            guard let result = self?.viewModel.moviesResult else { return }
+            self?.movies.append(contentsOf: result.results)
+            self?.currentPage = result.page
+            DispatchQueue.main.async { self?.updateTableView() }
         }
+        
         viewModel.didReceiveError = { error in
             fatalError(error)
         }
@@ -82,23 +85,26 @@ extension MovieListViewController {
             }
         }
     }
+    
+    func updateTableView() {
+        tableView.reloadData()
+        isLoading = false
+    }
 }
 
 extension MovieListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.MovieListViewCellID, for: indexPath) as? MovieListViewCell
         cell?.configureCell(movie: movies[indexPath.row])
-        return cell!
+        return cell ?? UITableViewCell()
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section != 0 {
-            return 55 //Loading Cell height
-        }
+        if indexPath.section != 0 { return 55 }
         return 240
     }
     

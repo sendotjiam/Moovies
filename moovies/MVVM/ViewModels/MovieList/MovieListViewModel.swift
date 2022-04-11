@@ -12,25 +12,42 @@ class MovieListViewModel {
     // MARK: - Properties
     let useCase : MovieListUseCase
     var moviesResult : Movies!
+
     
     init(useCase : MovieListUseCase) {
         self.useCase = useCase
     }
     
     // MARK: - Output
-    var didReceiveMovies : (() -> Void)?
+    var didReceivePopularMovies : (() -> Void)?
     var didReceiveError : ((String) -> Void)?
+    var didSearchMovies : (() -> Void)?
     
     // MARK: - Input
     func getPopularMovies(page: Int) {
         useCase.getPopularMovies(page: page) { [weak self] movies, error in
-            if error != nil {
+            guard let movies = movies,
+                  error == nil
+            else {
                 self?.didReceiveError?(error?.localizedDescription ?? "")
+                return
             }
-            if let movies = movies {
-                self?.moviesResult = movies
-                self?.didReceiveMovies?()
+            self?.moviesResult = movies
+            self?.didReceivePopularMovies?()
+        }
+    }
+    
+    func searchMovies(keyword: String) {
+        useCase.searchMovie(keyword: keyword) { [weak self] movies, error in
+            guard let movies = movies,
+                  error == nil
+            else {
+                self?.didReceiveError?(error?.localizedDescription ?? "")
+                return
             }
+            print(movies)
+            self?.moviesResult = movies
+            self?.didSearchMovies?()
         }
     }
 }
