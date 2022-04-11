@@ -42,7 +42,6 @@ class MovieListViewModel {
             guard let movies = movies,
                   error == nil
             else {
-                print(error, ">>>")
                 self?.didReceiveError?(error?.localizedDescription ?? "")
                 return
             }

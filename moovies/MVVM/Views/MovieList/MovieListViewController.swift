@@ -11,11 +11,11 @@ class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel : MovieListViewModel!
-    var isLoading = false
-    var movies = [Movie]()
-    var currentPage = 1
-    var currentMovieId = 0
+    private var viewModel : MovieListViewModel!
+    private var isLoading = false
+    private var movies = [Movie]()
+    private var currentPage = 1
+    private var currentMovieId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

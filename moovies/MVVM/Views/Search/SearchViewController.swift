@@ -10,36 +10,30 @@ import UIKit
 class SearchViewController: UIViewController {
 
     private lazy var searchBar : UISearchBar = {
-        let searchBar = UISearchBar()
+        let searchBar = UISearchBar(frame: .zero)
         searchBar.searchBarStyle = .minimal
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.delegate = self
         return searchBar
     }()
     
     private lazy var tableView : UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "MovieListViewCell", bundle: nil), forCellReuseIdentifier: "MovieListViewCell")
         return tableView
     }()
     
-    private lazy var stackView : UIStackView! = {
-        let stackView = UIStackView(arrangedSubviews: [searchBar, tableView])
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.spacing = 8
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        return stackView
-    }()
+    private var stackView : UIStackView!
+    
+    private var viewModel : MovieListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(stackView)
+        setupUI()
+        setupTableView()
         setupStackView()
+        bindViewModel()
     }
 }
 
@@ -55,7 +49,37 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchViewController {
+    private func bindViewModel() {
+        viewModel.didSearchedMovies = { [weak self] in
+            
+        }
+    }
+    
+    private func setupUI() {
+        title = "Search"
+        view.backgroundColor = .systemBackground
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "MovieListViewCell", bundle: nil), forCellReuseIdentifier: "MovieListViewCell")
+    }
+    
     private func setupStackView() {
+        stackView = UIStackView(arrangedSubviews: [searchBar])
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 8
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        view.addSubview(stackView)
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -64,4 +88,8 @@ extension SearchViewController {
             stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
         ])
     }
+}
+
+extension SearchViewController : UISearchBarDelegate {
+    
 }
