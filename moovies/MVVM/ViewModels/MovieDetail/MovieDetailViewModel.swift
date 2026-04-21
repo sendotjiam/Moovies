@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import XCTest
 
 class MovieDetailViewModel {
     // MARK: - Properties
@@ -34,4 +35,61 @@ class MovieDetailViewModel {
         }
     }
     
+    func deleteMovieDetail() {
+        movieDetail = nil
+    }
+    
+}
+
+
+class MovieDetailViewModel: XCTests {
+    
+    func testGetMovieDetailTestPositive() {
+        let movieDetail = MovieDetail()
+        let mockUseCase = MockMovieDetailUseCase()
+        mockUseCase.movie = movieDetail
+        
+        let sut = MovieDetailViewModel(useCase: mockUseCase)
+        
+        let expected = expectation(description: "didReceiveMovieDetail need to be called.")
+        sut.didReceiveMovieDetail = {
+            XCTAssetEqual(sut.movieDetail, movieDetail)
+            expected.fulfill()
+        }
+        
+        sut.getMovieDetail(movieId: 123)
+        wait(for: [expected], timeout: .short)
+    }
+
+    func testGetMovieDetailTestNegative() {
+        let movieDetail = MovieDetail()
+        let mockUseCase = MockMovieDetailUseCase()
+        mockUseCase.error = movieDetail
+        
+        let sut = MovieDetailViewModel(useCase: mockUseCase)
+        
+        let expected = expectation(description: "didReceiveError need to be called.")
+        sut.didReceiveError = {
+            XCTAssertNil(sut.movieDetail)
+            expected.fulfill()
+        }
+        sut.getMovieDetail(movieId: 123)
+        wait(for: [expected], timeout: .short)
+    }
+
+    
+    func testDeleteMovieDetail() {
+        let sut = MovieDetailViewModel(useCase: MockMovieDetailUseCase())
+        sut.deleteMovieDetail()
+        
+        XCAssertNil(sut.movieDetail)
+    }
+}
+
+struct MockMovieDetailUseCase: MovieDetailNetworkProvider {
+    var movie: MovieDetail?
+    var error: Error?
+    func getMovieDetail(movieId : Int, completion: @escaping ((MovieDetail?, Error?) -> Void)) {
+        completion(movie, error)
+    }
 }

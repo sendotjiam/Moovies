@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MovieListViewController: UIViewController {
+//class ChildMovieListViewController: MovieListViewController {}
+
+final class MovieListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     

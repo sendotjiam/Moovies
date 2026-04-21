@@ -10,3 +10,4 @@ import Foundation
 protocol MovieDetailNetworkProvider {
     func getMovieDetail(movieId : Int, completion: @escaping ((MovieDetail?, Error?) -> Void))
 }
+

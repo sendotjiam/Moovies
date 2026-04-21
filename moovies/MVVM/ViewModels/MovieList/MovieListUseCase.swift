@@ -29,7 +29,7 @@ struct MovieListUseCase : MovieListNetworkProvider {
         }
     }
     
-    func searchMovie(keyword: String, completion: @escaping ((Movies?, Error?) -> Void)) {
+    func searchMovie(keyword: String, completion: @escaping SearchMovie) {
         let url = "\(Constant.baseUrl)/search/movie?api_key=\(Constant.apiKey)&query=\(keyword)"
         print(url)
         AF.request(url).response { response in
